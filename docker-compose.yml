@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:12.1
+    env_file:
+      - .env
+    volumes:
+      - .postgresdb/:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    restart: on-failure
