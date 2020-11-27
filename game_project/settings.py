@@ -38,12 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'account_app',
     'game_app',
     'rest_framework',
     'drf_yasg',
     'django_filters',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +81,16 @@ AUTH_USER_MODEL = "account_app.User"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+print('---------os', dict(os.environ))
+# DATABASES = {
+
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+
+#     }
+# }
+
 
 DATABASES = {
 
@@ -152,7 +162,7 @@ REST_FRAMEWORK = {
 }
 from datetime import timedelta
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': False,

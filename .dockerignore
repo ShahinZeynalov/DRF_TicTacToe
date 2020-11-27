@@ -1,0 +1,11 @@
+.postgresdb/
+.v/
+.venv/
+.mongodb/
+.init-mongo.js/
+.mogodb/
+.pgadmin/
+.vscode/
+**.pyc
+**/__pycache__/
+.idea
