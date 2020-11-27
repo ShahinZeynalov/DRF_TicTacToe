@@ -104,18 +104,3 @@ class Game(models.Model):
             
         else:
             return self.result
-
-# class Move(models.Model):
-#     game = models.ForeignKey(Game, on_delete=models.CASCADE)
-#     is_user = models.BooleanField()
-#     number = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(9)])
-
-
-#     created_at = models.DateTimeField(auto_now_add=True) 
-
-# class Tile(models.Model):
-#     number = models.IntegerField()
-#     sign = models.CharField(max_length=1, default='-')
-
-#     updated_at = models.DateTimeField(auto_now=True)
-    
