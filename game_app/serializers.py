@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Game
-# from rest_framework.fields import CurrentUserDefault
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class GameListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,6 @@ class GameDetailSerializer(serializers.ModelSerializer):
         model = Game
         fields = '__all__'
         read_only_fields = ['id', 'user', 'result', 'board', 'created_at', 'updated_at']
+
+class TileNumberSerializer(serializers.Serializer):
+    number = serializers.IntegerField(required=True)

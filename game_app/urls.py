@@ -16,11 +16,12 @@ Including another URLconf
 from django.urls import path, include
 from .views import (
     GameListAPIView, GameCreateAPIView, GameRetrieveDestroyAPIView,
-
+    CheckGame
 )
 
 urlpatterns = [
     path('', GameListAPIView.as_view(), name='games'),
     path('create/', GameCreateAPIView.as_view(), name='game-create'),
     path('<int:pk>/', GameRetrieveDestroyAPIView.as_view(), name='game-detail'),
+    path('<int:pk>/check/', CheckGame.as_view(), name='check-game'),
 ]

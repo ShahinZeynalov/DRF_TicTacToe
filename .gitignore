@@ -113,6 +113,7 @@ venv.bak/
 .idea/
 .frontend/
 postgredb/
+.postgresdb/
 media/
 development/.postgresdb/
 

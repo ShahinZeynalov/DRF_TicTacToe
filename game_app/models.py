@@ -22,7 +22,7 @@ class Game(models.Model):
     def get_callable_board():
         return ['-', '-', '-', '-', '-', '-', '-', '-', '-']
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='games')
     result = models.IntegerField(choices=Result.choices, null=True, blank=True, default=0)
     board = ArrayField(
             models.CharField(max_length=1, blank=True), default=get_callable_board, 
@@ -33,7 +33,6 @@ class Game(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-    @property
     def is_game_over(self):
         """
         If the game is over and there is a winner, returns 'X' or 'O'.
@@ -60,7 +59,7 @@ class Game(models.Model):
             return None
         self.result = -1
         return 'draw'
-
+    
     @property
     def next_player(self):
         """
@@ -83,15 +82,16 @@ class Game(models.Model):
         """
         index = index - 1
         if index < 0 or index >= 9:
-            return "Invalid board index"
+            raise Exception('Invalid board index')
 
         if self.board[index] != '-':
-            return "Square already played"
+            raise Exception('Square already played')
 
         # One downside of storing the board state as a string
         # is that you can't mutate it in place.
         board = self.board
         board[index] = self.next_player
+        self.is_game_over()
 
     def play_auto(self):
         """Plays for any artificial/computers players.
