@@ -4,13 +4,23 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.authtoken.serializers import AuthTokenSerializer
-from rest_framework.generics import CreateAPIView
-from .serializers import UserCreateSerializer, LoginUserSerializer
+from rest_framework.generics import CreateAPIView, RetrieveAPIView
+from .serializers import UserCreateSerializer, LoginUserSerializer, UserSerializer
 from account_app.utils import CustomSwaggerAutoSchema
 from knox.views import LoginView
 from rest_framework import permissions, status
 
 User = get_user_model()
+
+class UserAPIView(RetrieveAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user
+
 
 class MyLoginView(LoginView):
     permission_classes = (permissions.AllowAny,)
