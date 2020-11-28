@@ -11,6 +11,7 @@ User = get_user_model()
 
 
 class Game(models.Model):
+    #this represents all possible winning ways.
     winning = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
     class Result(models.IntegerChoices):
         UWin = 1
@@ -19,11 +20,15 @@ class Game(models.Model):
         ND = 0
 
 
+    
+    #represents default board squares.
     def get_callable_board():
         return ['-', '-', '-', '-', '-', '-', '-', '-', '-']
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='games')
     result = models.IntegerField(choices=Result.choices, null=True, blank=True, default=0)
+    # https://docs.djangoproject.com/en/3.1/ref/contrib/postgres/fields/ 
+    #we're storing board square results in array field.
     board = ArrayField(
             models.CharField(max_length=1, blank=True), default=get_callable_board, 
             size=9
