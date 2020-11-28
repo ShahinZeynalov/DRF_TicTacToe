@@ -46,10 +46,5 @@ services:
       - postgres
     links:
       - postgres
-    
-    
-    
-
-
 volumes:
   .postgresdb:
