@@ -16,12 +16,19 @@ class GameListAPIView(ListAPIView):
     permission_classes=[permissions.IsAuthenticated]
     serializer_class = GameListSerializer
     filter_backends = [DjangoFilterBackend]
-    queryset = Game.objects.all()
     filterset_fields = ['result']
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases
+        for the currently authenticated user.
+        """
+        user = self.request.user
+        return Game.objects.filter(user=user)
 
 class GameCreateAPIView(CreateAPIView):
     serializer_class = GameDetailSerializer
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = (permissions.IsAuthenticated,)
 
 class GameRetrieveDestroyAPIView(RetrieveDestroyAPIView):
     serializer_class = GameDetailSerializer

@@ -45,8 +45,8 @@ class MyLoginView(LoginView):
         return Response(response_data, status=status.HTTP_200_OK)
 
 
-
 class RegisterAPIView(CreateAPIView):
+    permission_classes = (permissions.AllowAny,)
     model = User
     serializer_class = UserCreateSerializer
 
