@@ -33,7 +33,7 @@ class GameListSerializer(serializers.ModelSerializer):
         #wchich model will be serialize. and must be declared in Meta class.
         model = Game
         #fields describes which column of the game model will be serialize.
-        fields = ['id', 'result', 'created_at', 'updated_at']
+        fields = ['id', 'result', 'board', 'created_at', 'updated_at']
 
 #this serializer class serializes detail of the Game.
 class GameDetailSerializer(serializers.ModelSerializer):

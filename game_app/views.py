@@ -34,7 +34,7 @@ class GameListAPIView(ListAPIView):
         for the currently authenticated user.
         """
         user = self.request.user
-        return Game.objects.filter(user=user)
+        return Game.objects.filter(user=user).order_by('-updated_at')
 
 #creating a game.
 class GameCreateAPIView(CreateAPIView):
