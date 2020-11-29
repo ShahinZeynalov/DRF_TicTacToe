@@ -41,7 +41,7 @@ class Game(models.Model):
     def is_game_over(self):
         """
         If the game is over and there is a winner, returns 'X' or 'O'.
-        If the game is a stalemate, it returns ' ' (space)
+        If the game is a stalemate, it returns '-' (dash)
         If the game isn't over, it returns None.
         The test is to simple check for each combination of winnable
         states --- across, down, and diagonals.

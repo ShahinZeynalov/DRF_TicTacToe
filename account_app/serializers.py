@@ -4,6 +4,7 @@ from rest_framework.authtoken.models import Token
 import django.contrib.auth.password_validation as validators
 from rest_framework.exceptions import ValidationError
 from django.contrib.auth import authenticate
+from django.utils.translation import ugettext_lazy as _
 
 User = get_user_model()
 
